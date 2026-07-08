@@ -17,7 +17,7 @@ export default function Header() {
   const [selectedLoc, setSelectedLoc] = useState(0)
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 mix-blend-difference">
+    <header className="fixed top-0 left-0 right-0 z-50" style={{ backgroundColor: 'rgba(13,13,13,0.88)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}>
       <nav className="container flex items-center justify-between py-4">
         <a
           href="#"

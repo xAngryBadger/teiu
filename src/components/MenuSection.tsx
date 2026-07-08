@@ -74,7 +74,8 @@ export default function MenuSection() {
               {cat}
             </motion.h3>
 
-            <div className="max-w-3xl mx-auto space-y-8">
+            <div className="max-w-3xl mx-auto">
+              <div style={{ backgroundColor: '#faf5eb', border: '1px solid #e5ddd0', borderRadius: '4px', padding: '2rem' }} className="space-y-8">
               {restaurant.menu[cat].map((item, i) => (
                 <motion.div
                   key={item.name}
@@ -116,6 +117,7 @@ export default function MenuSection() {
                   </div>
                 </motion.div>
               ))}
+              </div>
             </div>
 
             {cat !== 'Dolci' && (
