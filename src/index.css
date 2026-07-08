@@ -12,15 +12,15 @@
   --font-display: 'Italiana', serif;
   --font-sans: 'Jost', sans-serif;
 
-  /* scale-luxury */
-  --text-h1: clamp(3.4rem, 5.2vw, 5.2rem);
-  --text-h2: clamp(2.3rem, 3.4vw, 3.4rem);
-  --text-h3: clamp(1.75rem, 2.5vw, 2rem);
-  --text-h4: clamp(1.125rem, 1.5vw, 1.5rem);
-  --text-body: clamp(1.125rem, 1.25vw, 1.25rem);
-  --text-body-sm: 0.9375rem;
-  --text-label: 0.75rem;
-  --text-eyebrow: clamp(0.75rem, 0.85vw, 0.85rem);
+  /* scale-luxury — escala aumentada para legibilidade em telas grandes */
+  --text-h1: clamp(4rem, 6.5vw, 6.5rem);
+  --text-h2: clamp(2.8rem, 4vw, 4rem);
+  --text-h3: clamp(2.2rem, 3vw, 2.8rem);
+  --text-h4: clamp(1.5rem, 2vw, 1.75rem);
+  --text-body: clamp(1.25rem, 1.5vw, 1.5rem);
+  --text-body-sm: clamp(1rem, 1.1vw, 1.125rem);
+  --text-label: 0.875rem;
+  --text-eyebrow: clamp(0.8rem, 0.95vw, 0.95rem);
 
   --leading-h1: 1.05;
   --leading-h2: 1.15;
