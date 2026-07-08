@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import { restaurant } from '../data/restaurant'
+import { restaurant, getDayHours } from '../data/restaurant'
+import { easeQuartOut } from '../data/motion'
 
 const dayOrder = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo']
 
@@ -52,7 +53,7 @@ export default function FooterSection() {
                     initial={{ opacity: 0, y: -8 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
-                    transition={{ duration: 0.2, ease: [0.25, 1, 0.5, 1] }}
+                    transition={{ duration: 0.2, ease: easeQuartOut }}
                     className="absolute bottom-full left-0 mb-2 min-w-[180px]"
                     style={{ backgroundColor: '#1a1a1a', border: '1px solid #2a2a2a' }}
                   >
@@ -80,9 +81,9 @@ export default function FooterSection() {
             <div className="space-y-1">
               {dayOrder.map((day) => {
                 const isToday = day === todayKey
-                const dayHours = loc.hours[day]
+                const { isClosed, shifts } = getDayHours(loc.hours, day)
 
-                if (dayHours === null) {
+                if (isClosed) {
                   return (
                     <div key={day} className="flex justify-between text-body-sm" style={{ color: isToday ? '#c8a96e' : '#3a3a3a' }}>
                       <span>{day}</span>
@@ -91,15 +92,13 @@ export default function FooterSection() {
                   )
                 }
 
-                const nightKey = `${day}_noite` as keyof typeof loc.hours
-                const nightHours = loc.hours[nightKey]
-
                 return (
-                  <div key={day} className={`flex justify-between text-body-sm`} style={{ color: isToday ? '#c8a96e' : '#a09888' }}>
+                  <div key={day} className="flex justify-between text-body-sm" style={{ color: isToday ? '#c8a96e' : '#a09888' }}>
                     <span>{day}</span>
                     <span>
-                      {dayHours.open}–{dayHours.close}
-                      {nightHours ? ` · ${nightHours.open}–${nightHours.close}` : ''}
+                      {shifts.map((s, i) => (
+                        <span key={i}>{i > 0 ? ' · ' : ''}{s.open}–{s.close}</span>
+                      ))}
                     </span>
                   </div>
                 )

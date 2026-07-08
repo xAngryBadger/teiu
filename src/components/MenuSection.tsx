@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion } from 'motion/react'
 import { restaurant } from '../data/restaurant'
 import type { MenuCategory } from '../types'
+import { easeQuartOut } from '../data/motion'
 
 const categories: MenuCategory[] = ['Antipasti', 'Primi', 'Secondi', 'Dolci']
 
@@ -23,7 +24,7 @@ export default function MenuSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
+          transition={{ duration: 0.6, ease: easeQuartOut }}
         >
           <p className="text-primary text-eyebrow tracking-eyebrow uppercase mb-3">
             Il Nostro Menu
@@ -68,7 +69,7 @@ export default function MenuSection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
+              transition={{ duration: 0.6, ease: easeQuartOut }}
             >
               {cat}
             </motion.h3>
@@ -82,7 +83,7 @@ export default function MenuSection() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.08, ease: [0.25, 1, 0.5, 1] }}
+                  transition={{ duration: 0.5, delay: i * 0.08, ease: easeQuartOut }}
                 >
                   <div className="flex-1">
                     <div className="flex items-baseline justify-between gap-4">

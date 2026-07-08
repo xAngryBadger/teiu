@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { restaurant } from '../data/restaurant'
+import { easeQuartOut, easeBackOut } from '../data/motion'
 
 type Step = 1 | 2 | 3 | 4 | 5
 
@@ -59,7 +60,7 @@ export default function ReservationSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
+          transition={{ duration: 0.6, ease: easeQuartOut }}
         >
           <p className="text-primary text-eyebrow tracking-eyebrow uppercase mb-3">
             Reserve
@@ -77,7 +78,7 @@ export default function ReservationSection() {
               className="text-center py-16"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }}
+              transition={{ duration: 0.6, ease: easeBackOut }}
             >
               <div
                 className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-6"
@@ -110,7 +111,7 @@ export default function ReservationSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+              transition={{ duration: 0.4, ease: easeQuartOut }}
             >
               {/* Progress */}
               <div className="flex justify-center gap-2 mb-10">
@@ -156,7 +157,7 @@ export default function ReservationSection() {
                     initial={{ opacity: 0, x: 30 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -30 }}
-                    transition={{ duration: 0.3, ease: [0.25, 1, 0.5, 1] }}
+                    transition={{ duration: 0.3, ease: easeQuartOut }}
                     className="text-center"
                   >
                     <p className="text-body tracking-body text-white mb-6">Que horário?</p>
@@ -187,7 +188,7 @@ export default function ReservationSection() {
                     initial={{ opacity: 0, x: 30 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -30 }}
-                    transition={{ duration: 0.3, ease: [0.25, 1, 0.5, 1] }}
+                    transition={{ duration: 0.3, ease: easeQuartOut }}
                     className="text-center"
                   >
                     <p className="text-body tracking-body text-white mb-6">Número de pessoas</p>
@@ -221,7 +222,7 @@ export default function ReservationSection() {
                     initial={{ opacity: 0, x: 30 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -30 }}
-                    transition={{ duration: 0.3, ease: [0.25, 1, 0.5, 1] }}
+                    transition={{ duration: 0.3, ease: easeQuartOut }}
                     className="max-w-sm mx-auto space-y-4"
                   >
                     <p className="text-body tracking-body text-white text-center mb-6">Seus dados</p>
@@ -261,7 +262,7 @@ export default function ReservationSection() {
                     initial={{ opacity: 0, x: 30 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -30 }}
-                    transition={{ duration: 0.3, ease: [0.25, 1, 0.5, 1] }}
+                    transition={{ duration: 0.3, ease: easeQuartOut }}
                     className="max-w-sm mx-auto"
                   >
                     <p className="text-body tracking-body text-white text-center mb-6">Alguma observação?</p>

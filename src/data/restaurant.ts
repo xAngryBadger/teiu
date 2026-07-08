@@ -1,4 +1,20 @@
-import type { RestaurantData } from '../types'
+import type { RestaurantData, Location } from '../types'
+
+export function getDayHours(hours: Location['hours'], day: string): { isClosed: boolean; shifts: { open: string; close: string }[] } {
+  const dayHours = hours[day]
+  if (dayHours === null) {
+    return { isClosed: true, shifts: [] }
+  }
+
+  const nightKey = `${day}_noite` as keyof typeof hours
+  const nightHours = hours[nightKey]
+
+  if (nightHours) {
+    return { isClosed: false, shifts: [dayHours, nightHours] }
+  }
+
+  return { isClosed: false, shifts: [dayHours] }
+}
 
 export const restaurant: RestaurantData = {
   name: 'Ristorante Villa Bellini',

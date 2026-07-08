@@ -1,5 +1,7 @@
 import { motion } from 'motion/react'
 import { restaurant } from '../data/restaurant'
+import ImagePlaceholder from './ImagePlaceholder'
+import { easeQuartOut } from '../data/motion'
 
 export default function AboutSection() {
   return (
@@ -11,7 +13,7 @@ export default function AboutSection() {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+            transition={{ duration: 0.8, ease: easeQuartOut }}
           >
             <p className="text-primary text-eyebrow tracking-eyebrow uppercase mb-3">
               La Nostra Storia
@@ -55,23 +57,12 @@ export default function AboutSection() {
           {/* Chef image placeholder */}
           <motion.div
             className="relative aspect-[3/4] w-full overflow-hidden"
-            style={{ backgroundColor: '#1a1a1a' }}
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+            transition={{ duration: 0.8, ease: easeQuartOut }}
           >
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center">
-                <svg className="w-16 h-16 mx-auto mb-2 opacity-20" viewBox="0 0 48 48" fill="none" stroke="#c8a96e" strokeWidth="1">
-                  <circle cx="24" cy="16" r="8" />
-                  <path d="M8 44c0-8.84 7.16-16 16-16s16 7.16 16 16" />
-                </svg>
-                <p className="text-label tracking-label uppercase" style={{ color: '#3a3a3a' }}>
-                  Chef {restaurant.chef.name}
-                </p>
-              </div>
-            </div>
+            <ImagePlaceholder type="chef" label={`Chef ${restaurant.chef.name}`} className="absolute inset-0" />
           </motion.div>
         </div>
       </div>

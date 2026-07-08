@@ -1,45 +1,8 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import { useMotionValue, useSpring } from 'motion/react'
 import { restaurant } from '../data/restaurant'
-
-function useMagneticHover(strength = 0.3) {
-  const x = useMotionValue(0)
-  const y = useMotionValue(0)
-  const springX = useSpring(x, { stiffness: 150, damping: 15 })
-  const springY = useSpring(y, { stiffness: 150, damping: 15 })
-
-  function handleMouse(e: React.MouseEvent, leaving: boolean) {
-    const rect = (e.currentTarget as HTMLElement).getBoundingClientRect()
-    if (leaving) {
-      x.set(0)
-      y.set(0)
-    } else {
-      const centerX = rect.left + rect.width / 2
-      const centerY = rect.top + rect.height / 2
-      x.set((e.clientX - centerX) * strength)
-      y.set((e.clientY - centerY) * strength)
-    }
-  }
-
-  return { x: springX, y: springY, handleMouse }
-}
-
-function MagneticButton({ children, className, onClick }: { children: React.ReactNode; className?: string; onClick?: () => void }) {
-  const { x, y, handleMouse } = useMagneticHover()
-
-  return (
-    <motion.button
-      className={className}
-      style={{ x, y }}
-      onMouseMove={(e) => handleMouse(e, false)}
-      onMouseLeave={(e) => handleMouse(e, true)}
-      onClick={onClick}
-    >
-      {children}
-    </motion.button>
-  )
-}
+import { MagneticButton } from '../hooks/useMagneticHover'
+import { easeQuartOut } from '../data/motion'
 
 const navLinks = [
   { label: 'Menu', href: '#menu' },
@@ -91,7 +54,7 @@ export default function Header() {
                   initial={{ opacity: 0, y: -8 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.2, ease: [0.25, 1, 0.5, 1] }}
+                  transition={{ duration: 0.2, ease: easeQuartOut }}
                   className="absolute top-full right-0 mt-2 min-w-[160px]"
                   style={{ backgroundColor: '#0d0d0d', border: '1px solid #2a2a2a' }}
                 >
@@ -142,7 +105,7 @@ export default function Header() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3, ease: [0.25, 1, 0.5, 1] }}
+            transition={{ duration: 0.3, ease: easeQuartOut }}
             className="md:hidden absolute top-full left-0 right-0"
             style={{ backgroundColor: '#0d0d0d', borderBottom: '1px solid #2a2a2a' }}
           >

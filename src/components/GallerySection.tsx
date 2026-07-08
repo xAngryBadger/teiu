@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { restaurant } from '../data/restaurant'
+import ImagePlaceholder from './ImagePlaceholder'
+import { easeQuartOut } from '../data/motion'
 
 type Tab = 'photos' | 'awards'
 
@@ -15,7 +17,7 @@ export default function GallerySection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
+          transition={{ duration: 0.6, ease: easeQuartOut }}
         >
           <p className="text-primary text-eyebrow tracking-eyebrow uppercase mb-3">
             Momentos
@@ -59,27 +61,20 @@ export default function GallerySection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+              transition={{ duration: 0.4, ease: easeQuartOut }}
             >
               <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
                 {restaurant.gallery.map((item, i) => (
                   <motion.div
                     key={i}
                     className="break-inside-avoid relative overflow-hidden group cursor-pointer"
-                    style={{ backgroundColor: '#d4c9b6', minHeight: i % 3 === 0 ? '320px' : '220px' }}
+                    style={{ minHeight: i % 3 === 0 ? '320px' : '220px' }}
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: i * 0.05, ease: [0.25, 1, 0.5, 1] }}
+                    transition={{ duration: 0.5, delay: i * 0.05, ease: easeQuartOut }}
                   >
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-center p-4">
-                        <p className="text-label tracking-label uppercase" style={{ color: '#6b6358' }}>
-                          {item.type === 'interior' ? 'Interior' : item.type === 'dish' ? 'Prato' : item.type === 'chef' ? 'Chef' : 'Evento'}
-                        </p>
-                        <p className="text-body-sm mt-1" style={{ color: '#6b6358' }}>{item.alt}</p>
-                      </div>
-                    </div>
+                    <ImagePlaceholder type={item.type} label={item.alt} className="absolute inset-0" />
                   </motion.div>
                 ))}
               </div>
@@ -92,7 +87,7 @@ export default function GallerySection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+              transition={{ duration: 0.4, ease: easeQuartOut }}
               className="max-w-3xl mx-auto space-y-6"
             >
               {restaurant.awards.map((award, i) => (
@@ -103,7 +98,7 @@ export default function GallerySection() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.08, ease: [0.25, 1, 0.5, 1] }}
+                  transition={{ duration: 0.5, delay: i * 0.08, ease: easeQuartOut }}
                 >
                   <div
                     className="flex-shrink-0 w-12 h-12 flex items-center justify-center text-lg"
