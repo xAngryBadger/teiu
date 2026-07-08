@@ -7,7 +7,7 @@ const location = restaurant.locations[0]
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden" style={{ backgroundColor: '#0d0d0d' }}>
+    <section className="relative min-h-screen overflow-hidden" style={{ backgroundColor: '#0d0d0d' }}>
       {/* Dark overlay background */}
       <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/80" />
       <div
@@ -17,7 +17,9 @@ export default function HeroSection() {
         }}
       />
 
-      <div className="relative container z-10 pt-24 pb-16">
+      <div className="relative container z-10 py-24 flex flex-col min-h-screen justify-between">
+        <div /> {/* spacer top */}
+
         <div className="max-w-3xl">
           <motion.p
             className="text-primary text-eyebrow tracking-eyebrow uppercase mb-4"
@@ -62,9 +64,9 @@ export default function HeroSection() {
           </motion.div>
         </div>
 
-        {/* Bottom info */}
+        {/* Bottom info — flex flow, não absolute */}
         <motion.div
-          className="absolute bottom-10 left-0 right-0 container flex flex-col sm:flex-row sm:items-end justify-between gap-4"
+          className="flex flex-col sm:flex-row sm:items-end justify-between gap-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 1.2 }}
@@ -73,7 +75,7 @@ export default function HeroSection() {
             <p className="text-label tracking-label uppercase" style={{ color: '#6b6358' }}>Endereço</p>
             <p className="text-body-sm text-white/80">{location.address}</p>
           </div>
-          <div className="text-right">
+          <div className="sm:text-right">
             <p className="text-label tracking-label uppercase" style={{ color: '#6b6358' }}>Horários</p>
             <p className="text-body-sm text-white/80">Ter–Sex 12h–15h · 19h–23h | Sáb 12h–16h · 19h–00h | Dom 12h–17h</p>
           </div>
